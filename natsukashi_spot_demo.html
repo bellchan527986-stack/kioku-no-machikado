@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>あの日の、あの場所。｜なつかしの風景帖</title>
+<style>
+:root{--paper:#f4eedf;--ink:#342d25;--muted:#7c7060;--rust:#a45238;--line:#d8cbb6;--card:#fffaf0;--green:#53644d}
+*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font-family:"Yu Mincho","Hiragino Mincho ProN",serif;line-height:1.7}
+header{border-bottom:1px solid var(--line);background:#eee4d1}
+.top{max-width:1050px;margin:auto;padding:16px 22px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+.brand{font-size:18px;font-weight:bold;letter-spacing:.08em}.brand small{display:block;font-size:10px;letter-spacing:.18em;color:var(--muted);font-family:Arial,sans-serif}
+nav{display:flex;gap:18px;font-size:13px}nav a{color:var(--ink);text-decoration:none}
+.hero{max-width:1050px;margin:auto;padding:42px 22px 36px;display:grid;grid-template-columns:1.05fr .95fr;gap:30px;align-items:center}
+.kicker{color:var(--rust);letter-spacing:.16em;font:11px Arial,sans-serif}
+h1{font-size:clamp(32px,5vw,54px);line-height:1.35;font-weight:500;margin:10px 0 15px;letter-spacing:.05em}
+.lead{color:#65594b;max-width:460px;font-size:15px}
+.hero-img{min-height:270px;border:8px solid var(--card);outline:1px solid var(--line);background:linear-gradient(0deg,rgba(40,28,20,.35),transparent 55%),url('https://images.unsplash.com/photo-1519608487953-e999c86e7455?auto=format&fit=crop&w=1200&q=85') center/cover;border-radius:2px;position:relative;box-shadow:0 8px 22px #55442a1c}
+.stamp{position:absolute;right:12px;bottom:12px;background:#f4eedfe8;padding:7px 11px;font-size:11px;letter-spacing:.1em}
+.search-wrap{max-width:1006px;margin:0 auto;padding:0 22px}
+.search{display:flex;gap:8px;background:var(--card);padding:10px;border:1px solid var(--line)}
+input,select,textarea{font:inherit;border:1px solid var(--line);background:#fffdf7;padding:11px;color:var(--ink);min-width:0}
+.search input{flex:1}
+button{font:inherit;border:0;background:var(--rust);color:#fff9ed;padding:11px 18px;cursor:pointer}
+button:hover{filter:brightness(1.08)}
+main{max-width:1050px;margin:auto;padding:35px 22px 55px}
+.section-head{display:flex;justify-content:space-between;align-items:end;gap:15px;margin-bottom:18px}
+h2{font-size:23px;font-weight:500;margin:0}.sub{font-size:12px;color:var(--muted)}
+.filters{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 22px}
+.chip{border:1px solid var(--line);color:var(--ink);background:transparent;border-radius:99px;padding:7px 13px;font-size:12px}
+.chip.active{background:var(--green);color:white;border-color:var(--green)}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:17px}
+.card{background:var(--card);border:1px solid var(--line);min-width:0}
+.photo{height:170px;background-size:cover;background-position:center;position:relative}
+.photo:after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,#2a211a55,transparent 60%)}
+.tag{position:absolute;z-index:1;left:10px;bottom:9px;color:white;font-size:11px;background:#44362dbd;padding:3px 8px}
+.card-body{padding:14px}.area{font:11px Arial,sans-serif;color:var(--rust);letter-spacing:.08em}.card h3{font-size:18px;margin:5px 0;font-weight:600}.desc{font-size:13px;color:#6e6254;margin:0 0 12px}.meta{display:flex;justify-content:space-between;color:var(--muted);font-size:11px;border-top:1px solid #e8ddcc;padding-top:9px}
+.note{margin-top:30px;background:#e9e0ce;border-left:3px solid var(--green);padding:15px 18px;font-size:13px;color:#5d5244}
+footer{background:#e9dfcd;border-top:1px solid var(--line);padding:25px 22px;text-align:center;font-size:11px;color:var(--muted)}
+.modal{display:none;position:fixed;inset:0;background:#211a16aa;z-index:5;padding:18px;overflow:auto}.modal.open{display:flex;align-items:center;justify-content:center}.dialog{width:min(540px,100%);background:var(--paper);padding:24px;border:1px solid var(--line)}.dialog h2{margin-bottom:12px}.formgrid{display:grid;gap:10px}.formgrid label{font-size:12px;display:grid;gap:4px}.dialog-actions{display:flex;justify-content:flex-end;gap:8px;margin-top:15px}.cancel{background:#d8cbb6;color:var(--ink)}
+.empty{display:none;padding:30px;text-align:center;color:var(--muted);grid-column:1/-1}
+@media(max-width:700px){.hero{grid-template-columns:1fr;padding-top:28px;gap:20px}.hero-img{min-height:210px}.grid{grid-template-columns:repeat(2,minmax(0,1fr))}.photo{height:135px}nav{gap:10px}.top{align-items:flex-start}.brand{font-size:16px}}
+@media(max-width:470px){.grid{grid-template-columns:1fr}.photo{height:190px}.top{flex-direction:column}.search{flex-wrap:wrap}.search input{flex-basis:100%}.section-head{align-items:start;flex-direction:column}}
+</style>
+</head>
+<body>
+<header><div class="top"><div class="brand">なつかしの風景帖<small>NOSTALGIC SPOT NOTEBOOK</small></div><nav><a href="#spots">場所を探す</a><a href="#about">このサイトについて</a><a href="#" id="openPost">場所を投稿</a></nav></div></header>
+<section class="hero">
+<div><div class="kicker">MEMORIES LIVE HERE</div><h1>あの日の、<br>あの場所。</h1><p class="lead">ふと足を止めたくなる風景を、みんなで残していく。古い喫茶店、静かな駅、路地裏の商店街。あなたの知っている「なつかしい場所」を見つけよう。</p><button id="heroPost">思い出の場所を投稿する　↗</button></div>
+<div class="hero-img" role="img" aria-label="夕暮れのノスタルジックな風景"><span class="stamp">記憶に残る風景を、ここに。</span></div>
+</section>
+<div class="search-wrap"><div class="search"><input id="query" placeholder="場所・地域・キーワードで検索"><select id="region"><option value="">すべての地域</option><option>関東</option><option>関西</option><option>東北</option><option>中部</option><option>九州</option></select><button id="searchBtn">探す</button></div></div>
+<main id="spots">
+<div class="section-head"><div><div class="kicker">THE SPOT ARCHIVE</div><h2>みんなが見つけた場所</h2></div><div class="sub">小さな風景も、大切な記録。</div></div>
+<div class="filters"><button class="chip active" data-cat="すべて">すべて</button><button class="chip" data-cat="喫茶店">喫茶店</button><button class="chip" data-cat="街並み">街並み・商店街</button><button class="chip" data-cat="駅・鉄道">駅・鉄道</button><button class="chip" data-cat="自販機・お店">自販機・お店</button><button class="chip" data-cat="風景">風景</button></div>
+<div class="grid" id="cards">
+<article class="card" data-cat="喫茶店" data-region="関東" data-search="純喫茶 木のカウンター 東京 喫茶店 昭和 レトロ"><div class="photo" style="background-image:url('https://images.unsplash.com/photo-1554118811-1e0d58224f24?auto=format&fit=crop&w=800&q=80')"><span class="tag">喫茶店</span></div><div class="card-body"><div class="area">関東 · 東京（サンプル）</div><h3>時間がゆっくり流れる純喫茶</h3><p class="desc">木のカウンターとやわらかな灯り。いつか見たような落ち着く空間。</p><div class="meta"><span>♡ 行ってみたい</span><span>投稿例</span></div></div></article>
+<article class="card" data-cat="街並み" data-region="関西" data-search="古い商店街 路地 大阪 関西 街並み 昭和"><div class="photo" style="background-image:url('https://images.unsplash.com/photo-1519501025264-65ba15a82390?auto=format&fit=crop&w=800&q=80')"><span class="tag">街並み・商店街</span></div><div class="card-body"><div class="area">関西 · 大阪（サンプル）</div><h3>夕暮れの古い商店街</h3><p class="desc">看板の灯りがともるころ、少し遠回りして歩きたくなる通り。</p><div class="meta"><span>♡ 行ってみたい</span><span>投稿例</span></div></div></article>
+<article class="card" data-cat="駅・鉄道" data-region="中部" data-search="木造駅舎 ローカル線 静かな駅 中部 鉄道"><div class="photo" style="background-image:url('https://images.unsplash.com/photo-1474487548417-781cb71495f3?auto=format&fit=crop&w=800&q=80')"><span class="tag">駅・鉄道</span></div><div class="card-body"><div class="area">中部 · 場所未確認（サンプル）</div><h3>静かなホームのある駅</h3><p class="desc">列車を待つ時間まで、思い出になりそうなローカル線の風景。</p><div class="meta"><span>♡ 行ってみたい</span><span>投稿例</span></div></div></article>
+<article class="card" data-cat="自販機・お店" data-region="東北" data-search="レトロ 自販機 ドライブイン 東北 古い店"><div class="photo" style="background-image:url('https://images.unsplash.com/photo-1519331379826-f10be5486c6f?auto=format&fit=crop&w=800&q=80')"><span class="tag">自販機・お店</span></div><div class="card-body"><div class="area">東北 · 場所未確認（サンプル）</div><h3>道ばたで出会う懐かしいもの</h3><p class="desc">旅の途中で見つけた、なんだか気になる小さなお店。</p><div class="meta"><span>♡ 行ってみたい</span><span>投稿例</span></div></div></article>
+<article class="card" data-cat="風景" data-region="関東" data-search="路地裏 夕暮れ 古い住宅街 関東 風景"><div class="photo" style="background-image:url('https://images.unsplash.com/photo-1519608487953-e999c86e7455?auto=format&fit=crop&w=800&q=80')"><span class="tag">風景</span></div><div class="card-body"><div class="area">関東 · 場所未確認（サンプル）</div><h3>帰り道に見た夕暮れ</h3><p class="desc">特別な観光地じゃなくても、心に残る風景がある。</p><div class="meta"><span>♡ 行ってみたい</span><span>投稿例</span></div></div></article>
+<article class="card" data-cat="街並み" data-region="九州" data-search="古い建物 レトロな通り 九州 街並み"><div class="photo" style="background-image:url('https://images.unsplash.com/photo-1511818966892-d7d671e672a2?auto=format&fit=crop&w=800&q=80')"><span class="tag">街並み・商店街</span></div><div class="card-body"><div class="area">九州 · 場所未確認（サンプル）</div><h3>古い建物が残る通り</h3><p class="desc">新しい街の中に、昔の面影がそっと残っている。</p><div class="meta"><span>♡ 行ってみたい</span><span>投稿例</span></div></div></article>
+<div class="empty" id="empty">見つかりませんでした。別のキーワードで探してみてね。</div>
+</div>
+<div class="note" id="about"><strong>この場所帖について</strong><br>ここは、実在するノスタルジックな場所の情報をみんなで共有するための掲示板の試作品です。掲載内容と写真はデザイン確認用のサンプルで、実際の場所情報ではありません。</div>
+</main>
+<footer>なつかしの風景帖 · DEMO<br>訪問前に営業状況・立入可否を確認し、私有地や危険な場所には立ち入らないでください。</footer>
+<div class="modal" id="modal"><div class="dialog"><h2>思い出の場所を投稿</h2><p class="sub">投稿フォームの試作品です。入力内容は保存・公開されません。</p><form class="formgrid" id="postForm"><label>場所の名前<input required placeholder="例：昔ながらの喫茶店"></label><label>地域・住所<input required placeholder="例：群馬県〇〇市"></label><label>ジャンル<select><option>喫茶店</option><option>街並み・商店街</option><option>駅・鉄道</option><option>自販機・お店</option><option>風景</option><option>その他</option></select></label><label>思い出・紹介文<textarea rows="3" placeholder="どんなところ？ 何が懐かしい？"></textarea></label><div class="dialog-actions"><button type="button" class="cancel" id="closePost">閉じる</button><button type="submit">投稿を試す</button></div></form></div></div>
+<script>
+const cards=[...document.querySelectorAll('.card')];let category='すべて';
+function filter(){const q=document.querySelector('#query').value.trim().toLowerCase(),r=document.querySelector('#region').value;let n=0;cards.forEach(c=>{const okCat=category==='すべて'||c.dataset.cat===category;const okQ=!q||(c.dataset.search+' '+c.innerText).toLowerCase().includes(q);const okR=!r||c.dataset.region===r;c.style.display=okCat&&okQ&&okR?'':'none';if(okCat&&okQ&&okR)n++});document.querySelector('#empty').style.display=n?'none':'block'}
+document.querySelectorAll('.chip').forEach(b=>b.addEventListener('click',()=>{document.querySelectorAll('.chip').forEach(x=>x.classList.remove('active'));b.classList.add('active');category=b.dataset.cat;filter()}));
+document.querySelector('#searchBtn').addEventListener('click',filter);document.querySelector('#query').addEventListener('keydown',e=>{if(e.key==='Enter')filter()});document.querySelector('#region').addEventListener('change',filter);
+const modal=document.querySelector('#modal');function open(){modal.classList.add('open')}function close(){modal.classList.remove('open')}
+document.querySelector('#openPost').addEventListener('click',e=>{e.preventDefault();open()});document.querySelector('#heroPost').addEventListener('click',open);document.querySelector('#closePost').addEventListener('click',close);modal.addEventListener('click',e=>{if(e.target===modal)close()});
+document.querySelector('#postForm').addEventListener('submit',e=>{e.preventDefault();alert('これは試作品です。入力内容は保存されていません。次の段階で投稿を保存できる仕組みを追加できます。');close()});
+</script>
+</body></html>
